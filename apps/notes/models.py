@@ -2,6 +2,14 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class Category(models.Model):
+    # نام دسته‌بندی با حداکثر ۱۰۰ کاراکتر
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 class Note(models.Model):
     # ارتباط با کاربر: مشخص می‌کند صاحب این یادداشت کیست
     user = models.ForeignKey(
@@ -19,7 +27,7 @@ class Note(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # دسته‌بندی اختیاری یادداشت
     category = models.ForeignKey(
-        "Category",
+        Category,
         on_delete=models.CASCADE,
         null=True,
         blank=True,
@@ -30,11 +38,4 @@ class Note(models.Model):
         
     def __str__(self):
         return self.title
-
-
-class Category(models.Model):
-    # نام دسته‌بندی با حداکثر ۱۰۰ کاراکتر
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
+
