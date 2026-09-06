@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'rest_framework',
     'rest_framework.authtoken',  # ماژول رسمی جنگو برای ساخت کلید دیجیتال (Token) جهت احراز هویت کاربران در اپلیکیشن‌ها
-    'apps.notes',
+    'apps.note',
 ]
 
 MIDDLEWARE = [

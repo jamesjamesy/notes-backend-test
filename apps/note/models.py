@@ -25,6 +25,8 @@ class Note(models.Model):
     content = models.TextField()
     # تاریخ و ساعت ساخت یادداشت که خودکار ذخیره می‌شود
     created_at = models.DateTimeField(auto_now_add=True)
+    # تاریخ و ساعت آخرین ویرایش که با هر تغییر نوت خودکار به زمان حال به‌روز می‌شود
+    updated_at = models.DateTimeField(auto_now=True)
     # دسته‌بندی اختیاری یادداشت
     category = models.ForeignKey(
         Category,

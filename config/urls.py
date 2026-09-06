@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.authtoken.views import obtain_auth_token
 
-from apps.notes.views import RegisterView
+from apps.note.views import RegisterView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include("apps.notes.urls")),
+    path("api/", include("apps.note.urls")),
     # آدرس لاگین: نام کاربری و رمز را می‌گیرد و کلید دیجیتال (Token) تحویل می‌دهد
     path("api/login/", obtain_auth_token, name="api_login"),
     # آدرس ثبت‌نام: نام کاربری و رمز جدید را می‌گیرد، کاربر می‌سازد و توکن می‌دهد
