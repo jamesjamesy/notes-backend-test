@@ -19,6 +19,10 @@ from django.urls import include, path
 from rest_framework.authtoken.views import obtain_auth_token
 
 from apps.note.views import RegisterView
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,6 +31,9 @@ urlpatterns = [
     path("api/login/", obtain_auth_token, name="api_login"),
     # آدرس ثبت‌نام: نام کاربری و رمز جدید را می‌گیرد، کاربر می‌سازد و توکن می‌دهد
     path("api/register/", RegisterView.as_view(), name="api_register"),
+    # مسیرهای سواگر و نقشه API
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
 ]
 
 

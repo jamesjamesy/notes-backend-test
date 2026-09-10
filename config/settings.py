@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'rest_framework',
     'rest_framework.authtoken',  # ماژول رسمی جنگو برای ساخت کلید دیجیتال (Token) جهت احراز هویت کاربران در اپلیکیشن‌ها
+    'drf_spectacular',  # پکیج ساخت مستندات استاندارد OpenAPI 3 و پنل سواگر
     'apps.note',
 ]
 
@@ -151,3 +152,19 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# Swagger / OpenAPI Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Note App API',
+    'DESCRIPTION': 'مستندات و محیط تعاملی تست APIهای پروژه یادداشت',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
