@@ -19,10 +19,14 @@ from django.urls import include, path
 from rest_framework.authtoken.views import obtain_auth_token
 
 from apps.note.views import RegisterView
+from drf_spectacular.renderers import OpenApiJsonRenderer
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
 )
+
+class SpectacularJSONView(SpectacularAPIView):
+    renderer_classes = [OpenApiJsonRenderer]
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -33,6 +37,7 @@ urlpatterns = [
     path("api/register/", RegisterView.as_view(), name="api_register"),
     # مسیرهای سواگر و نقشه API
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/schema.json", SpectacularJSONView.as_view(), name="schema-json"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
 ]
 
